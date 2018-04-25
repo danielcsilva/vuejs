@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>Routers com vuejs</h1>
+<div id="app">
+    <router-view></router-view>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <script>
+       var router = new VueRouter({
+            routes: [
+                {
+                    path: '/pagina1', component: {
+                        template: '<h1>Pagina 1</h1>'
+                    }
+                },
+                {
+                    path: '/pagina2', component: {
+                        template: '<h1>Pagina 2</h1>'
+                    }
+                }
+            ]
+       })
+
+       var app = new Vue({
+            el: '#app',
+           router: router
+        })
+    </script>
+
+</body>
+</html>
