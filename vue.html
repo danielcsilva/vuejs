@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <div>Total: <span id="total">{{ total }}</span></div>
+    <button type="button" id="btnAdd" @click="addRow">Aducuibar Iinha</button>
+    <table>
+        <thead>
+        <tr>
+            <td>Produto</td>
+            <td>Quantidade</td>
+            <td>Valor Compra</td>
+            <td>Subtotal</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(obj,index) in products">
+            <td>
+                <select name="product_id" v-model="obj.product_id">
+                    <option value="1">Produto 1</option>
+                    <option value="2">Produto 2</option>
+                    <option value="3">Produto 3</option>
+                    <option value="4">Produto 4</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" name="amount" id="amount" value="" v-model="obj.amount">
+            </td>
+            <td>
+                <input type="text" name="value" id="value" value="" v-model="obj.value">
+            </td>
+            <td>
+                {{obj.amount * obj.value}}
+            </td>
+            <td>
+                <a href="#" @click="deleteRow(index)">Remover Linha</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                products: []
+            },
+            computed: {
+                total: function(){
+                    var sum = 0;
+                    for (var i = 0; i < this.products.length;i++){
+                        sum += parseFloat(this.products[i].amount * this.products[i].value);
+                    }
+                    return sum;
+                }
+            },
+            methods: {
+                addRow: function () {
+                    this.products.push({
+                        product_id: 1,
+                        amount: 1,
+                        value: 0
+                    });
+                },
+                deleteRow: function (index) {
+                    this.products.splice(index, 1);
+                }
+            }
+        })
+    </script>
+</div>
+</body>
+</html>
